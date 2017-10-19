@@ -48,17 +48,20 @@ var store = redux.createStore(
 
 store.subscribe(() => {
   var str = store.getState();
-  document.getElementById('p-detail').innerHTML = JSON.stringify(str);
 });
 
-store.dispatch({type: 'TOGGLE_IS_ADDING'});
+// store.dispatch({
+//   type: 'TOGGLE_IS_ADDING'
+// });
+//
+// store.dispatch({
+//   type: 'ADD_ITEM',
+//   item: 'Unity'
+// });
+//
+// store.dispatch({
+//   type: 'DELETE_ITEM',
+//   index: 1
+// });
 
-store.dispatch({
-  type: 'ADD_ITEM',
-  item: 'Unity'
-});
-
-store.dispatch({
-  type: 'DELETE_ITEM',
-  index: 1
-});
+module.exports = store;

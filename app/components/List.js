@@ -1,13 +1,9 @@
 import React from 'react';
 import Note from './Note.js';
 import NoteForm from './NoteForm.js';
+import {connect} from 'react-redux';
 
 class List extends React.Component{
-  constructor(props) {
-      super(props);
-      this.state = {arrNote: ['Android', 'iOS', 'NodeJS']}
-  }
-
   remove(index){
     this.state.arrNote.splice(index, 1);
     this.setState(this.state);
@@ -23,7 +19,7 @@ class List extends React.Component{
       <div className="div-list">
         <NoteForm handleAdd={this.addNote.bind(this)}/>
         {
-          this.state.arrNote.map((e, i) => <Note index={i}
+          this.props.arrNote.map((e, i) => <Note index={i}
           handleRemove={this.remove.bind(this)}
           key={i}> {e}</Note>)
         }
@@ -32,4 +28,7 @@ class List extends React.Component{
   }
 }
 
-module.exports = List;
+// chia se state cua store
+module.exports = connect(function (state) {
+  return {arrNote: state.arrNote}
+})(List);
