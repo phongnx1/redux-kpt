@@ -1,25 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {toggle, addItem} from '../action.js';
 
 class NoteForm extends React.Component{
   handleSubmit(e){
     //chong refresh trang web
     e.preventDefault();
     var {dispatch} = this.props;
-    dispatch({
-      type: 'ADD_ITEM',
-      item: this.refs.txt.value,
-    });
-    dispatch({
-      type: 'TOGGLE_IS_ADDING',
-    });
+
+    dispatch(addItem(this.refs.txt.value));
+    dispatch(toggle());
   }
 
-  toggle(){
+  toggle1(){
     var {dispatch} = this.props;
-    dispatch({
-      type: 'TOGGLE_IS_ADDING',
-    });
+    dispatch(toggle());
   }
   render(){
     if(this.props.isAdding){
@@ -32,7 +27,7 @@ class NoteForm extends React.Component{
       )
     }
     return(
-        <button onClick={this.toggle.bind(this)}> + </button>
+        <button onClick={this.toggle1.bind(this)}> + </button>
     )
   }
 }

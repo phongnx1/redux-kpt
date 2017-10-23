@@ -11,7 +11,20 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
-//Thêm
+
+//   resolve: {
+//     modules: [__dirname, 'node_modules'],
+//     alias: {
+//       reducer: 'app/reducers/reducer',
+//       store: 'app/storeConf',
+//       List: 'app/components/List',
+//       Note: 'app/components/Note',
+//       NoteForm: 'app/components/NoteForm',
+//       action: 'app/action'
+//     },
+//     extensions: ['', '.js', '.jsx']
+//   },
+// //Thêm
   module : {
     loaders : [
       {

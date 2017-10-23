@@ -1,9 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {deleteItem} from '../action.js';
 
 class Note extends React.Component{
   removeNote(){
-    var {index, handleRemove} = this.props;
-    handleRemove(index);
+    var {index, dispatch} = this.props;
+    dispatch(deleteItem(index));
   }
   render(){
     return(
@@ -16,4 +18,7 @@ class Note extends React.Component{
   }
 }
 
-module.exports = Note;
+// chia se state cua store
+module.exports = connect(function (state) {
+  return {arrNote: state.arrNote}
+})(Note);
