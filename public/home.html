@@ -2,10 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Server-side rendering</title>
+    <title>Test Tool</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
+    <ul id="slide-out" class="side-nav fixed">
+      <li class="side-nav__logo">
+        <img src="http://point.gmo.jp/gp/img/common/logo.png">
+        <h3>Test Tool</h3>
+      </li>
+      <li class="side-nav__type">メンバーランク</li>
+      <ul>
+        <li><a href="/">メンバーランク検索</a></li>
+        <li><a href="#">テスト用メンバー登録</a></li>
+      </ul>
+    </ul>
+
     <div id="root"></div>
+
     <script src="bundle.js"></script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="lib/js/materialize.min.js"></script>
   </body>
 </html>

@@ -5,7 +5,7 @@ import isAdding from './isAdding.js';
 
 //The Root Reducer has a team, and aggregate them by combineReducers()
 const rootReducer = combineReducers({
-    arrNote,
+    arrNote: arrNote,
     isAdding
 });
 
