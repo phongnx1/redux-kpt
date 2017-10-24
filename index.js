@@ -5,5 +5,5 @@ app.use(express.static('public'));
 app.listen(3000, () => console.log('Server started'))
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/home.html');
+  res.sendFile(__dirname + '/public/home.html');
 });
