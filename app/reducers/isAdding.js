@@ -1,6 +1,8 @@
+import { TOGGLE_IS_ADDING } from '../constants/ActionTypes';
+
 var isAddingReducer = (state = false, action) => {
   switch (action.type) {
-    case 'TOGGLE_IS_ADDING':
+    case TOGGLE_IS_ADDING:
       return  !state;
     default:
         return state;

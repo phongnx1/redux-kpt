@@ -1,6 +1,3 @@
-export const ADD_TODO = 'ADD_TODO';
-export const DELETE_TODO = 'DELETE_TODO';
-export const EDIT_TODO = 'EDIT_TODO';
-export const MARK_TODO = 'MARK_TODO';
-export const MARK_ALL = 'MARK_ALL';
-export const CLEAR_MARKED = 'CLEAR_MARKED';
+export const ADD_ITEM = 'ADD_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const TOGGLE_IS_ADDING = 'TOGGLE_IS_ADDING';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {toggle, addItem} from '../action.js';
+import {toggle, addItem} from '../actions/action.js';
 
 class NoteForm extends React.Component{
   handleSubmit(e){

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteItem} from '../action.js';
+import {deleteItem} from '../actions/action.js';
 
 class Note extends React.Component{
   removeNote(){

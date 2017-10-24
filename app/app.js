@@ -1,14 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var List = require('./components/List.js');
-var store = require('./storeConf.js');
+//Root component
+import React from 'react';
+import ReactDOM from 'react-dom';
+import List from './components/List.js';
+import store from './storeConf.js';
 
-//provider la 1 component
-var {Provider} = require('react-redux');
+//provider is a component
+import { Provider } from 'react-redux';
 
-ReactDOM.render(
+const appRoot = (
   <Provider store={store}>
     <List/>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
+
+ReactDOM.render(appRoot, document.getElementById('root'))
