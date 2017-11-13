@@ -1,13 +1,13 @@
 import React from 'react';
 import Note from './Note.js';
 import NoteForm from './NoteForm.js';
+import SearchForm from './SearchForm.js';
 import SlideNav from './SlideNav.js';
 import {connect} from 'react-redux';
 
 class List extends React.Component{
   render(){
     return(
-      <div>
         <div id="container">
         <nav>
           <div class="nav-wrapper header">
@@ -15,14 +15,17 @@ class List extends React.Component{
           </div>
         </nav>
         <div id="content">
+          <SearchForm/>
+          <hr/>
           <NoteForm/>
+          <hr/>
+          <p>テスト用の会員一覧</p>
           {
             this.props.arrNote.map((e, i) => <Note index={i}
             key={i}> {e}</Note>)
           }
         </div>
         </div>
-      </div>
     )
   }
 }

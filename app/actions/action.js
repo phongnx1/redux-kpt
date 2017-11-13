@@ -20,4 +20,11 @@ function toggle() {
   };
 }
 
-module.exports = {addItem, deleteItem, toggle};
+function searchMember(item) {
+  return {
+    type: types.SEARCH_MEMBER,
+    item
+  };
+}
+
+module.exports = {addItem, deleteItem, toggle, searchMember};

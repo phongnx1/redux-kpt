@@ -1,9 +1,13 @@
 #container {
-  
+
 }
 
 #container #content {
   width: 768px;
   margin: 0 auto;
   padding: 48px 0;
+}
+
+.select-rank {
+  display: block;
 }
