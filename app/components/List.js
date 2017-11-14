@@ -9,11 +9,6 @@ class List extends React.Component{
   render(){
     return(
         <div id="container">
-        <nav>
-          <div class="nav-wrapper header">
-              <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-          </div>
-        </nav>
         <div id="content">
           <SearchForm/>
           <hr/>
@@ -24,6 +19,24 @@ class List extends React.Component{
             this.props.arrNote.map((e, i) => <Note index={i}
             key={i}> {e}</Note>)
           }
+          <table id="table_id" class="display">
+            <thead>
+              <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+              </tr>
+              <tr>
+                <td>Row 2 Data 1</td>
+                <td>Row 2 Data 2</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         </div>
     )
