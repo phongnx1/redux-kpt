@@ -13,9 +13,9 @@ class SearchForm extends React.Component{
   render(){
       return(
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input autoFocus type="text" placeholder="Enter your text" className="form-control mb5px" ref="txt"/>
-          <br/>
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ref="txt"/>
           <button className="btn btn-info">Search</button>
+          <br/>
         </form>
       )
   }

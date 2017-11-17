@@ -1,20 +1,61 @@
 import { ADD_ITEM, DELETE_ITEM, SEARCH_MEMBER } from '../constants/ActionTypes';
+import Request from 'superagent';
 
-var arrNoteReducer = (state = ['Android','iOS', 'NodeJS'], action) => {
+var arrNoteReducer = (listMember = [], action) => {
   switch (action.type) {
     case SEARCH_MEMBER:
-      return search(state);
+      return search(listMember, action.item);
     case ADD_ITEM:
-      return [...state, action.item];
+      return [...listMember, action.item];
     case DELETE_ITEM:
-      return state.filter((e, i) => i != action.index);
+      return listMember.filter((e, i) => i != action.index);
     default:
-        return state;
+        return listMember;
   }
 }
 
-function search(state) {
-  return [...state, "Search"];
+function search(listMember, email) {
+  // var listMember = [
+  //   {
+  //     'name': "phong",
+  //     'age': 26,
+  //     'mail': [
+  //       "mail1": "xuanphong09t1@gmail.com",
+  //       "mail2": "xuanphong09t1@gmail.com",
+  //     ],
+  //     'adress': "shibuya",
+  //   },
+  //   {
+  //     'name': "Gianng",
+  //     'age': 26,
+  //     'mail': [
+  //       "mail1": "xuanphong09t1@gmail.com",
+  //       "mail2": "xuanphong09t1@gmail.com",
+  //     ],
+  //     'adress': "shibuya",
+  //   },
+  // ];
+  Request
+    .post('http://frontend.local/api/v1/tool/member/get-member-for-test')
+    .withCredentials()
+    .set('Content-Type', 'application/json')
+    .send({ login: email})
+    .end((err, res) =>{
+      if (err || !res.ok) {
+        alert(res.content);
+      } else {
+        var data = JSON.stringify(res.body);
+        var obj = JSON.parse(data);
+        var listMember = obj["data"]["login_extends"];
+
+        alert( typeof listMember);
+        alert(" Before");
+
+        console.log(listMember);
+      }
+    });
+    alert(" Late");
+    return listMember;
 }
 
 module.exports = arrNoteReducer;

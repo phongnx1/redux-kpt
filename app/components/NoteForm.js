@@ -23,9 +23,6 @@ class NoteForm extends React.Component{
     Request
       .post('http://frontend.local/api/v1/tool/member/get-member-for-test')
       .withCredentials()
-      .set('Access-Control-Allow-Origin', '*')
-      .set('Access-Control-Allow-Credentials', 'true')
-      .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
       .set('Content-Type', 'application/json')
       .send({ login: 'gmoidtest0001@gmail.com'})
       .end((err, res) =>{

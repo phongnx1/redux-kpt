@@ -6,39 +6,75 @@ import SlideNav from './SlideNav.js';
 import {connect} from 'react-redux';
 
 class List extends React.Component{
+
   render(){
+    alert('List member: 222');
+    //var listMember = this.props.arrNote;
     return(
-        <div id="container">
-        <div id="content">
-          <SearchForm/>
-          <hr/>
-          <NoteForm/>
-          <hr/>
-          <p>テスト用の会員一覧</p>
-          {
-            this.props.arrNote.map((e, i) => <Note index={i}
-            key={i}> {e}</Note>)
-          }
-          <table id="table_id" class="display">
-            <thead>
-              <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Row 1 Data 1</td>
-                <td>Row 1 Data 2</td>
-              </tr>
-              <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-              </tr>
-            </tbody>
-          </table>
+      <div>
+        <div className="row">
+            <div className="col-lg-12">
+                <h1 className="page-header">会員登録</h1>
+            </div>
         </div>
+
+        <div className="row">
+            <div className="col-lg-12">
+                <SearchForm/>
+            </div>
         </div>
+
+        <div className="row">
+            <div className="col-lg-12">
+                <NoteForm/>
+            </div>
+        </div>
+
+        <div className="row">
+            <div className="col-lg-12">
+                {this.props.arrNote.map(function(e, i) {
+                  return (
+                    <Note index={i} key={i}> {e.name}</Note>
+                  )
+              })}
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-lg-12">
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                        DataTables Advanced Tables
+                    </div>
+
+                    <div className="panel-body">
+                        <table width="100%" className="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>MemberID</th>
+                                    <th>Login</th>
+                                    <th>Current rank</th>
+                                    <th>Invest Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {this.props.arrNote.map(function(member, index) {
+                                return(
+                                  <tr className="odd gradeX">
+                                      <td>{member.name}</td>
+                                      <td>{member.login}</td>
+                                      <td>{member.invest_point}</td>
+                                      <td>{member.current_rank}</td>
+                                  </tr>
+                                )
+                              })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
     )
   }
 }
