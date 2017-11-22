@@ -27,4 +27,11 @@ function searchMember(item) {
   };
 }
 
-module.exports = {addItem, deleteItem, toggle, searchMember};
+function fetchPostsSuccess(data) {
+  return {
+    type: types.FETCH_SUCCESS,
+    data
+  }
+}
+
+module.exports = {addItem, deleteItem, toggle, searchMember, fetchPostsSuccess};

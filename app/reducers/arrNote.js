@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, SEARCH_MEMBER } from '../constants/ActionTypes';
+import { ADD_ITEM, DELETE_ITEM, SEARCH_MEMBER, GET_DATA_RECEIVED, FETCH_SUCCESS} from '../constants/ActionTypes';
 import Request from 'superagent';
 
 var arrNoteReducer = (listMember = [], action) => {
@@ -9,32 +9,34 @@ var arrNoteReducer = (listMember = [], action) => {
       return [...listMember, action.item];
     case DELETE_ITEM:
       return listMember.filter((e, i) => i != action.index);
+    case FETCH_SUCCESS:
+      return action.data;
     default:
         return listMember;
   }
 }
 
 function search(listMember, email) {
-  // var listMember = [
-  //   {
-  //     'name': "phong",
-  //     'age': 26,
-  //     'mail': [
-  //       "mail1": "xuanphong09t1@gmail.com",
-  //       "mail2": "xuanphong09t1@gmail.com",
-  //     ],
-  //     'adress': "shibuya",
-  //   },
-  //   {
-  //     'name': "Gianng",
-  //     'age': 26,
-  //     'mail': [
-  //       "mail1": "xuanphong09t1@gmail.com",
-  //       "mail2": "xuanphong09t1@gmail.com",
-  //     ],
-  //     'adress': "shibuya",
-  //   },
-  // ];
+  var test = [
+    {
+      'name': "phong",
+      'age': 26,
+      'mail': [
+        "mail1": "xuanphong09t1@gmail.com",
+        "mail2": "xuanphong09t1@gmail.com",
+      ],
+      'adress': "shibuya",
+    },
+    {
+      'name': "Gianng",
+      'age': 26,
+      'mail': [
+        "mail1": "xuanphong09t1@gmail.com",
+        "mail2": "xuanphong09t1@gmail.com",
+      ],
+      'adress': "shibuya",
+    },
+  ];
   Request
     .post('http://frontend.local/api/v1/tool/member/get-member-for-test')
     .withCredentials()
@@ -46,16 +48,19 @@ function search(listMember, email) {
       } else {
         var data = JSON.stringify(res.body);
         var obj = JSON.parse(data);
-        var listMember = obj["data"]["login_extends"];
-
-        alert( typeof listMember);
-        alert(" Before");
-
-        console.log(listMember);
+        data = obj["data"]["login_extends"];
+        alert('Den day');
+        dispatch(fetchPostsSuccess(data));
       }
     });
-    alert(" Late");
-    return listMember;
+    // setTimeout(function () {
+    //   alert(" Late");
+    //   alert(test[0].name);
+    //   return test;
+    // }, 1000);
+    //
+    // //alert(test[0].name);
+    // return test;
 }
 
 module.exports = arrNoteReducer;

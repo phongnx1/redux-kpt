@@ -4,12 +4,36 @@ import NoteForm from './NoteForm.js';
 import SearchForm from './SearchForm.js';
 import SlideNav from './SlideNav.js';
 import {connect} from 'react-redux';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
-class List extends React.Component{
+const products = [];
+
+function addProducts(quantity) {
+  const startId = products.length;
+  for (let i = 0; i < quantity; i++) {
+    const id = startId + i;
+    products.push({
+      id: id,
+      name: 'Item name ' + id,
+      price: 2100 + i
+    });
+  }
+}
+
+addProducts(5);
+class List extends React.Component {
 
   render(){
-    alert('List member: 222');
-    //var listMember = this.props.arrNote;
+    var listMember = this.props.arrNote.map(function(member, index) {
+      return(
+        <tr>
+            <td>{member.member_id}</td>
+            <td>{member.login}</td>
+            <td>{member.invest_point}</td>
+            <td>{member.current_rank}</td>
+        </tr>
+      )
+    });
     return(
       <div>
         <div className="row">
@@ -32,49 +56,15 @@ class List extends React.Component{
 
         <div className="row">
             <div className="col-lg-12">
-                {this.props.arrNote.map(function(e, i) {
-                  return (
-                    <Note index={i} key={i}> {e.name}</Note>
-                  )
-              })}
+              <BootstrapTable data={ this.props.arrNote } pagination>
+                  <TableHeaderColumn dataField='member_id' isKey={ true }>Product ID</TableHeaderColumn>
+                  <TableHeaderColumn dataField='login'>Product Name</TableHeaderColumn>
+                  <TableHeaderColumn dataField='invest_point'>Product Price</TableHeaderColumn>
+              </BootstrapTable>
             </div>
         </div>
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        DataTables Advanced Tables
-                    </div>
 
-                    <div className="panel-body">
-                        <table width="100%" className="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                                <tr>
-                                    <th>MemberID</th>
-                                    <th>Login</th>
-                                    <th>Current rank</th>
-                                    <th>Invest Point</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              {this.props.arrNote.map(function(member, index) {
-                                return(
-                                  <tr className="odd gradeX">
-                                      <td>{member.name}</td>
-                                      <td>{member.login}</td>
-                                      <td>{member.invest_point}</td>
-                                      <td>{member.current_rank}</td>
-                                  </tr>
-                                )
-                              })}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
       </div>
-
     )
   }
 }
