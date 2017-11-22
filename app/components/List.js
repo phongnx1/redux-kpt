@@ -6,34 +6,9 @@ import SlideNav from './SlideNav.js';
 import {connect} from 'react-redux';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
-const products = [];
-
-function addProducts(quantity) {
-  const startId = products.length;
-  for (let i = 0; i < quantity; i++) {
-    const id = startId + i;
-    products.push({
-      id: id,
-      name: 'Item name ' + id,
-      price: 2100 + i
-    });
-  }
-}
-
-addProducts(5);
 class List extends React.Component {
 
   render(){
-    var listMember = this.props.arrNote.map(function(member, index) {
-      return(
-        <tr>
-            <td>{member.member_id}</td>
-            <td>{member.login}</td>
-            <td>{member.invest_point}</td>
-            <td>{member.current_rank}</td>
-        </tr>
-      )
-    });
     return(
       <div>
         <div className="row">
@@ -56,10 +31,14 @@ class List extends React.Component {
 
         <div className="row">
             <div className="col-lg-12">
-              <BootstrapTable data={ this.props.arrNote } pagination>
-                  <TableHeaderColumn dataField='member_id' isKey={ true }>Product ID</TableHeaderColumn>
-                  <TableHeaderColumn dataField='login'>Product Name</TableHeaderColumn>
-                  <TableHeaderColumn dataField='invest_point'>Product Price</TableHeaderColumn>
+              <BootstrapTable data={ this.props.arrNote } pagination search={ true } multiColumnSearch={ true }>
+                  <TableHeaderColumn dataField='member_id' dataSort={ true } isKey={ true }>Member ID</TableHeaderColumn>
+                  <TableHeaderColumn dataField='login' dataSort={ true }>Login</TableHeaderColumn>
+                  <TableHeaderColumn dataField='status' dataSort={ true }>Status</TableHeaderColumn>
+                  <TableHeaderColumn dataField='invest_point' dataSort={ true }>General point</TableHeaderColumn>
+                  <TableHeaderColumn dataField='limited_point' dataSort={ true }>Limited point</TableHeaderColumn>
+                  <TableHeaderColumn dataField='current_rank' dataSort={ true }>Current rank</TableHeaderColumn>
+                  <TableHeaderColumn dataField='next_rank' dataSort={ true }>Next rank</TableHeaderColumn>
               </BootstrapTable>
             </div>
         </div>
