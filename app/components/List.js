@@ -1,11 +1,10 @@
 import React from 'react';
-import Note from './Note.js';
-import NoteForm from './NoteForm.js';
+import RegisterMembersForm from './RegisterMembersForm';
 import SearchForm from './SearchForm';
-import SlideNav from './SlideNav.js';
 import {connect} from 'react-redux';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {RankType} from '../constants/RankType';
+import {MemberStatus} from '../constants/MemberStatus';
 import PointExpireInfors from './PointExpireInfors';
 
 function enumFormatter(cell, row, enumObject) {
@@ -18,13 +17,13 @@ class List extends React.Component {
   }
 
   isExpandableRow(row) {
-    if (row.expand.length > 0) return true;
+    if (row.expired_info.length > 0) return true;
     else return false;
   }
 
   expandComponent(row) {
     return (
-      <PointExpireInfors data={ row.expand } />
+      <PointExpireInfors data={ row.expired_info } />
     );
   }
 
@@ -51,7 +50,7 @@ class List extends React.Component {
             </div>
         </div>
 
-        <div className="row">
+        <div className="row search-member-from">
             <div className="col-lg-12">
                 <SearchForm/>
             </div>
@@ -59,13 +58,13 @@ class List extends React.Component {
 
         <div className="row">
             <div className="col-lg-12">
-                <NoteForm/>
+                <RegisterMembersForm/>
             </div>
         </div>
 
-        <div className="row">
+        <div className="row member-table">
             <div className="col-lg-12">
-              <BootstrapTable data={ this.props.arrNote }
+              <BootstrapTable data={ this.props.memberArr }
                   pagination options={ options } search
                   multiColumnSearch={ true }
                   expandableRow={ this.isExpandableRow }
@@ -73,7 +72,7 @@ class List extends React.Component {
                   expandColumnOptions={ { expandColumnVisible: true } }>
                   <TableHeaderColumn dataField='member_id' dataSort={ true } isKey={ true }>Member ID</TableHeaderColumn>
                   <TableHeaderColumn dataField='login' width='250' dataSort={ true }>Login</TableHeaderColumn>
-                  <TableHeaderColumn dataField='status' dataSort={ true }>Status</TableHeaderColumn>
+                  <TableHeaderColumn dataField='status' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ MemberStatus }>Status</TableHeaderColumn>
                   <TableHeaderColumn dataField='invest_point' dataSort={ true }>General point</TableHeaderColumn>
                   <TableHeaderColumn dataField='limited_point' dataSort={ true }>Limited point</TableHeaderColumn>
                   <TableHeaderColumn dataField='current_rank' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ RankType }>Current rank</TableHeaderColumn>
@@ -89,5 +88,5 @@ class List extends React.Component {
 
 // share state of store
 module.exports = connect(function (state) {
-  return {arrNote: state.arrNote}
+  return {memberArr: state.memberArr}
 })(List);

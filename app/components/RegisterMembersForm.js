@@ -1,33 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {toggle, addItem, fetchPostsSuccess} from '../actions/action.js';
-import {GetListMembers} from '../common/SuperagentHelper.js';
+import {toggle, fetchPostsSuccess} from '../actions/action';
+import {getListMembers, registerMembers} from '../common/SuperagentHelper';
 import Request from 'superagent';
 
-// function getListMembers(email, dispatch) {
-//   Request
-//     .post('http://frontend.local/api/v1/tool/member/get-member-for-test')
-//     .withCredentials()
-//     .set('Content-Type', 'application/json')
-//     .send({ login: email})
-//     .end((err, res) =>{
-//       if (err || !res.ok) {
-//         alert("Call API get list member Fail!");
-//       } else {
-//         var data = JSON.stringify(res.body);
-//         var obj = JSON.parse(data);
-//         data = obj["data"]["login_extends"];
-//         dispatch(fetchPostsSuccess(data));
-//         dispatch(toggle());
-//       }
-//     });
-// }
-
-class NoteForm extends React.Component{
-
-
+class RegisterMembersForm extends React.Component{
   handleSubmit(e){
-    //chong refresh trang web
     e.preventDefault();
     var {dispatch} = this.props;
 
@@ -41,25 +19,15 @@ class NoteForm extends React.Component{
       numberOfMember: this.refs.numberOfMember.value,
     };
 
-    Request
-      .post('http://frontend.local/api/v1/tool/member/register-member-for-test')
-      .withCredentials()
-      .set('Content-Type', 'application/json')
-      .send({
-        login: registerInfor.login,
-        password: registerInfor.password,
-        current_rank: registerInfor.currentRank,
-        invest_point: registerInfor.investPoint,
-        limited_point: registerInfor.limitedPoint,
-        expired_date: registerInfor.expiredDate,
-        number_of_member: registerInfor.numberOfMember
-      })
-      .end((err, res) =>{
+    alert(this.refs.expiredDate.value);
+    // Call API to register member
+    registerMembers(registerInfor).end((err, res) => {
         if (err || !res.ok) {
           alert("Call API register member fail!");
         } else {
-          GetListMembers(registerInfor.login, dispatch);
-          //getListMembers(registerInfor.login, dispatch);
+          alert("Register successfully!");
+          // Call API to get list member
+          getListMembers(registerInfor.login, dispatch);
         }
       });
   }
@@ -68,11 +36,11 @@ class NoteForm extends React.Component{
     var {dispatch} = this.props;
     dispatch(toggle());
   }
+
   render(){
     if(this.props.isAdding){
       return(
         <div>
-          <p>会員登録</p>
           <form onSubmit={this.handleSubmit.bind(this)} role="form">
             <div className="form-group">
               <label>GMO IDメールアドレス</label>
@@ -96,6 +64,7 @@ class NoteForm extends React.Component{
 
             <div className="form-group">
               <input type="text" placeholder="通常ポイント" className="form-control" ref="investPoint" required/>
+              <p className="help-block">来月ランクの説明：99pt以下: レギュラー、 100 - 999pt： シルバー、 1000 - 2999pt： ゴールド、 3000pt以上： プラチナ</p>
             </div>
 
             <div className="form-group">
@@ -104,27 +73,26 @@ class NoteForm extends React.Component{
 
             <div className="form-group">
               <label>期間限定日</label>
-              <input className="form-control" placeholder="20170131" ref="expiredDate"/>
+              <input className="form-control" id="date" placeholder="20170131" ref="expiredDate"/>
             </div>
 
             <div className="form-group">
               <input type="text"　placeholder="件数" className="form-control"　ref="numberOfMember" required/>
             </div>
 
-            <br/>
-            <button type="button" onClick={this.toggle.bind(this)} className="btn btn-default">キャンセール</button>　
-            <button className="btn btn-success">登録</button>
+            <button type="button" onClick={this.toggle.bind(this)} className="btn btn-default">キャンセル</button>　
+            <button className="btn btn-success register-btn">登録</button>
           </form>
         </div>
       )
     }
     return(
-        <button onClick={this.toggle.bind(this)} className="btn btn-primary" > 新規登録 </button>
+        <button onClick={this.toggle.bind(this)} className="btn btn-primary add-new-btn" > 新規登録 </button>
     )
   }
 }
 
-// chia se state cua store
+//share state of store
 module.exports = connect(function (state) {
   return {isAdding: state.isAdding}
-})(NoteForm);
+})(RegisterMembersForm);

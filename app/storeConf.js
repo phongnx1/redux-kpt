@@ -1,11 +1,9 @@
-//The root component
 import { createStore} from 'redux';
-import rootReducer from './reducers/rootReducer.js';
-import Request from 'superagent';
+import rootReducer from './reducers/rootReducer';
 
 // initialState
 const initialState = {
-  arrNote: [],
+  memberArr: [],
 };
 
 // Create store

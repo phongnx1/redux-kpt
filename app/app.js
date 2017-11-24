@@ -1,11 +1,10 @@
 //Root component
 import React from 'react';
 import ReactDOM from 'react-dom';
-import List from './components/List.js';
-import NoteForm from './components/NoteForm.js';
-import store from './storeConf.js';
+import List from './components/List';
+import RegisterMembersForm from './components/RegisterMembersForm';
+import store from './storeConf';
 
-//provider is a component
 import { Provider } from 'react-redux';
 
 const appRoot = (
@@ -15,4 +14,5 @@ const appRoot = (
   </div>
   </Provider>
 );
+
 ReactDOM.render(appRoot, document.getElementById('root'))

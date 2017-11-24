@@ -1,6 +1,2 @@
-export const ADD_ITEM = 'ADD_ITEM';
-export const DELETE_ITEM = 'DELETE_ITEM';
 export const TOGGLE_IS_ADDING = 'TOGGLE_IS_ADDING';
-export const SEARCH_MEMBER = 'SEARCH_MEMBER';
-export const GET_DATA_RECEIVED = 'GET_DATA_RECEIVED';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';

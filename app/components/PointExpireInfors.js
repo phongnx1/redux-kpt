@@ -5,8 +5,8 @@ class PointExpireInfors extends React.Component{
     if (this.props.data) {
       return (
         <BootstrapTable data={ this.props.data }>
-          <TableHeaderColumn dataField='fieldA' isKey={ true }>Field A</TableHeaderColumn>
-          <TableHeaderColumn dataField='fieldB'>Field B</TableHeaderColumn>
+          <TableHeaderColumn dataField='invest_point' isKey={ true }>期間限定ポイント</TableHeaderColumn>
+          <TableHeaderColumn dataField='expired_date'>期間限定日</TableHeaderColumn>
         </BootstrapTable>);
     } else {
       return (<p>?</p>);
@@ -14,5 +14,4 @@ class PointExpireInfors extends React.Component{
   }
 }
 
-// chia se state cua store
 module.exports = PointExpireInfors
