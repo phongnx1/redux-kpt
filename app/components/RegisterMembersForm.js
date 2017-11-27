@@ -19,7 +19,6 @@ class RegisterMembersForm extends React.Component{
       numberOfMember: this.refs.numberOfMember.value,
     };
 
-    alert(this.refs.expiredDate.value);
     // Call API to register member
     registerMembers(registerInfor).end((err, res) => {
         if (err || !res.ok) {
@@ -43,17 +42,17 @@ class RegisterMembersForm extends React.Component{
         <div>
           <form onSubmit={this.handleSubmit.bind(this)} role="form">
             <div className="form-group">
-              <label>GMO IDメールアドレス</label>
+              <label>GMO IDメールアドレス（＊）</label>
               <input autoFocus className="form-control" placeholder="gmoidtest@gmail.com" ref="login" required/>
             </div>
 
             <div className="form-group">
-              <label>パスワード</label>
-              <input className="form-control" value="a@A1234" ref="password" required/>
+              <label>パスワード（＊）</label>
+              <input className="form-control" placeholder="a@A1234" ref="password" required/>
             </div>
 
             <div className="form-group">
-              <label>現在ランク</label>
+              <label>現在ランク（＊）</label>
               <select className="form-control" ref="currentRank">
                 <option value="1">レギュラー</option>
                 <option value="2">シルバー</option>
@@ -63,12 +62,14 @@ class RegisterMembersForm extends React.Component{
             </div>
 
             <div className="form-group">
-              <input type="text" placeholder="通常ポイント" className="form-control" ref="investPoint" required/>
+              <label>通常ポイント（＊）</label>
+              <input type="text" placeholder="100" className="form-control" ref="investPoint" required/>
               <p className="help-block">来月ランクの説明：99pt以下: レギュラー、 100 - 999pt： シルバー、 1000 - 2999pt： ゴールド、 3000pt以上： プラチナ</p>
             </div>
 
             <div className="form-group">
-              <input type="text" placeholder="期間限定ポイント" className="form-control" ref="limitedPoint"/>
+              <label>期間限定ポイント</label>
+              <input type="text" placeholder="100" className="form-control" ref="limitedPoint"/>
             </div>
 
             <div className="form-group">
@@ -77,7 +78,9 @@ class RegisterMembersForm extends React.Component{
             </div>
 
             <div className="form-group">
-              <input type="text"　placeholder="件数" className="form-control"　ref="numberOfMember" required/>
+              <label>件数（＊）</label>
+              <input type="text"　placeholder="1" className="form-control"　ref="numberOfMember" required/>
+              <input type="text" id="datepicker"/>
             </div>
 
             <button type="button" onClick={this.toggle.bind(this)} className="btn btn-default">キャンセル</button>　
