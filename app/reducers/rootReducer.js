@@ -3,7 +3,7 @@ import memberArr from './memberArr';
 import isAdding from './isAdding';
 
 const rootReducer = combineReducers({
-    memberArr: memberArr,
+    memberArr,
     isAdding
 });
 

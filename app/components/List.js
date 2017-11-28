@@ -42,6 +42,7 @@ class List extends React.Component {
       searchField: this.createCustomSearchField,
       expandRowBgColor: 'rgb(242, 255, 163)'
     };
+
     return(
       <div>
         <div className="row">
@@ -70,17 +71,19 @@ class List extends React.Component {
                   expandableRow={ this.isExpandableRow }
                   expandComponent={ this.expandComponent }
                   expandColumnOptions={ { expandColumnVisible: true } }>
-                  <TableHeaderColumn dataField='member_id' dataSort={ true } isKey={ true }>Member ID</TableHeaderColumn>
-                  <TableHeaderColumn dataField='login' width='250' dataSort={ true }>Login</TableHeaderColumn>
-                  <TableHeaderColumn dataField='status' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ MemberStatus }>Status</TableHeaderColumn>
-                  <TableHeaderColumn dataField='invest_point' dataSort={ true }>General point</TableHeaderColumn>
-                  <TableHeaderColumn dataField='limited_point' dataSort={ true }>Limited point</TableHeaderColumn>
-                  <TableHeaderColumn dataField='current_rank' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ RankType }>Current rank</TableHeaderColumn>
-                  <TableHeaderColumn dataField='next_rank' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ RankType }>Next rank</TableHeaderColumn>
+                  <TableHeaderColumn dataField='member_id' dataSort={ true } isKey={ true }>会員ＩＤ</TableHeaderColumn>
+                  <TableHeaderColumn dataField='login' width='300' dataSort={ true }>ログイン</TableHeaderColumn>
+                  <TableHeaderColumn dataField='status' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ MemberStatus }>ステータス</TableHeaderColumn>
+                  <TableHeaderColumn dataField='invest_point' dataSort={ true }>通常ポイント</TableHeaderColumn>
+                  <TableHeaderColumn dataField='limited_point' dataSort={ true }>期間限定ポイント</TableHeaderColumn>
+                  <TableHeaderColumn dataField='current_rank' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ RankType }>現在ランク</TableHeaderColumn>
+                  <TableHeaderColumn dataField='next_rank' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ RankType }>来月ランク</TableHeaderColumn>
               </BootstrapTable>
             </div>
         </div>
 
+        <div id = "loader"></div>
+        
       </div>
     )
   }
