@@ -9,7 +9,7 @@ export const  stopLoading = () =>{
 export const getListMembers = (email, dispatch) => {
     return (
       Request
-        .post('http://frontend.local/api/v1/tool/member/get-member-for-test')
+        .post('http://frontend.local/api/v1/tool/member/get')
         .withCredentials()
         .set('Content-Type', 'application/json')
         .send({ login: email})
@@ -23,7 +23,7 @@ export const getListMembers = (email, dispatch) => {
           } else {
             var data = JSON.stringify(res.body);
             var obj = JSON.parse(data);
-            var memberArr = obj["data"]["login_extends"];
+            var memberArr = obj["data"]["members"];
             dispatch(fetchPostsSuccess(memberArr));
             stopLoading();
           }
@@ -34,7 +34,7 @@ export const getListMembers = (email, dispatch) => {
 export const registerMembers = (registerInfor) => {
     return (
       Request
-        .post('http://frontend.local/api/v1/tool/member/register-member-for-test')
+        .post('http://frontend.local/api/v1/tool/member/register')
         .withCredentials()
         .set('Content-Type', 'application/json')
         .send({
@@ -42,9 +42,8 @@ export const registerMembers = (registerInfor) => {
           password: registerInfor.password,
           current_rank: registerInfor.currentRank,
           invest_point: registerInfor.investPoint,
-          limited_point: registerInfor.limitedPoint,
-          expired_date: registerInfor.expiredDate,
-          number_of_member: registerInfor.numberOfMember
+          campaign_id: registerInfor.campaignId,
+          regist_count: registerInfor.registCount
         })
     )
 }

@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {toggle, fetchPostsSuccess} from '../actions/action';
 import {getListMembers, registerMembers, stopLoading} from '../common/SuperagentHelper';
 import $ from 'jquery';
-import * as validate from '../common/validateForm';
 
 class RegisterMembersForm extends React.Component{
   componentDidMount() {
@@ -12,20 +11,17 @@ class RegisterMembersForm extends React.Component{
   handleSubmit(e){
     e.preventDefault();
     var {dispatch} = this.props;
+    var campaignId = $('#checkbox:checked').val();
 
     var registerInfor = {
       login: this.refs.login.value,
       password: this.refs.password.value,
       currentRank: this.refs.currentRank.value,
       investPoint: this.refs.investPoint.value,
-      limitedPoint: this.refs.limitedPoint.value,
-      expiredDate: this.refs.expiredDate.value,
-      numberOfMember: this.refs.numberOfMember.value,
+      campaignId: campaignId,
+      registCount: this.refs.registCount.value,
     };
 
-    if(!validate.checkCombinedLimitedPointAndExpiredDate(registerInfor.limitedPoint, registerInfor.expiredDate)){
-      return false;
-    }
 
     $("#loader").css({ display: "block" });
     $("#register-btn").attr("disabled", true);
@@ -65,7 +61,7 @@ class RegisterMembersForm extends React.Component{
 
             <div className="form-group">
               <label>パスワード（＊）</label>
-              <input pattern=".{6,}" title="Password は 6 文字以上でなければいけません。" className="form-control" placeholder="a@A1234" ref="password" required/>
+              <input className="form-control" value="gmoidtest01" ref="password" disabled required/>
             </div>
 
             <div className="form-group">
@@ -85,18 +81,13 @@ class RegisterMembersForm extends React.Component{
             </div>
 
             <div className="form-group">
-              <label>期間限定ポイント</label>
-              <input type="number" id="replyNumber" min="0" data-bind="value:replyNumber" placeholder="100" className="form-control" ref="limitedPoint"/>
-            </div>
-
-            <div className="form-group">
-              <label>期間限定日</label>
-              <input className="form-control" id="date" pattern="[0-9]{4}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[01])" title="期間限定日 は Format: YYYYMMDD" placeholder="20170131" ref="expiredDate"/>
+              <label><input type="checkbox" id="checkbox"value="11434"/>  期間限定ポイントを登録</label>
+              <p className="help-block">期間限定ポイントを登録すると、期間限定ポイント数：100pt、期間限定日：2018/11/30になります。</p>
             </div>
 
             <div className="form-group">
               <label>件数（＊）</label>
-              <input type="number" id="replyNumber" min="1" max= "10" data-bind="value:replyNumber"　placeholder="1" className="form-control"　ref="numberOfMember" required/>
+              <input type="number" id="replyNumber" min="1" max= "10" data-bind="value:replyNumber"　placeholder="1" className="form-control"　ref="registCount" required/>
             </div>
 
             <button type="button" onClick={this.toggle.bind(this)} className="btn btn-default">キャンセル</button>　

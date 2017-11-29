@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {RankType} from '../constants/RankType';
 import {MemberStatus} from '../constants/MemberStatus';
-import PointExpireInfors from './PointExpireInfors';
 
 function enumFormatter(cell, row, enumObject) {
   return enumObject[cell];
@@ -14,17 +13,6 @@ function enumFormatter(cell, row, enumObject) {
 class List extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  isExpandableRow(row) {
-    if (row.expired_info.length > 0) return true;
-    else return false;
-  }
-
-  expandComponent(row) {
-    return (
-      <PointExpireInfors data={ row.expired_info } />
-    );
   }
 
   createCustomSearchField = (props) => {
@@ -67,10 +55,7 @@ class List extends React.Component {
             <div className="col-lg-12">
               <BootstrapTable data={ this.props.memberArr }
                   pagination options={ options } search
-                  multiColumnSearch={ true }
-                  expandableRow={ this.isExpandableRow }
-                  expandComponent={ this.expandComponent }
-                  expandColumnOptions={ { expandColumnVisible: true } }>
+                  multiColumnSearch={ true }>
                   <TableHeaderColumn dataField='member_id' dataSort={ true } isKey={ true }>会員ＩＤ</TableHeaderColumn>
                   <TableHeaderColumn dataField='login' width='300' dataSort={ true }>ログイン</TableHeaderColumn>
                   <TableHeaderColumn dataField='status' dataSort={ true } dataFormat={ enumFormatter } formatExtraData={ MemberStatus }>ステータス</TableHeaderColumn>
@@ -83,7 +68,7 @@ class List extends React.Component {
         </div>
 
         <div id = "loader"></div>
-        
+
       </div>
     )
   }
