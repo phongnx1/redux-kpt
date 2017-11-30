@@ -31,11 +31,21 @@ class List extends React.Component {
       expandRowBgColor: 'rgb(242, 255, 163)'
     };
 
+    var style = {
+    	color:'red',
+    };
+
     return(
       <div>
         <div className="row">
             <div className="col-lg-12">
                 <h1 className="page-header">会員登録</h1>
+            </div>
+        </div>
+
+        <div className="row">
+            <div className="col-lg-12">
+              <div id="message" style={style}></div>
             </div>
         </div>
 

@@ -19,8 +19,9 @@ export const getListMembers = (email, dispatch) => {
             var data = JSON.stringify(res.body);
             var obj = JSON.parse(data);
             var error_message = obj["error_message"];
-            alert("Call API get list member Fail! \n Error: " +error_message);
+            $("#message").text(error_message);
           } else {
+            $("#message").text('');
             var data = JSON.stringify(res.body);
             var obj = JSON.parse(data);
             var memberArr = obj["data"]["members"];

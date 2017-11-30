@@ -34,10 +34,10 @@ class RegisterMembersForm extends React.Component{
           var data = JSON.stringify(res.body);
           var obj = JSON.parse(data);
           var error_message = obj["error_message"];
-          alert("Call API register member fail! \n Error: " +error_message);
+          $("#message").text(error_message);
         } else {
           $("#register-btn").removeAttr("disabled");
-          alert("Register successfully!");
+          alert("登録が完了しました！")
           // Call API to get list member
           getListMembers(registerInfor.login, dispatch);
         }
